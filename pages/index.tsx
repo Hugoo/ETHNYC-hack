@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import ConnectButton from "../components/ConnectButton";
 import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
 
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
         </div>
 
         <SearchBar />
+        <ConnectButton />
       </section>
       <section className="section">
         <h3 className="title is-3">Protocols</h3>
