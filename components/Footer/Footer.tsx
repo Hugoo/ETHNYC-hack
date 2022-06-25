@@ -7,7 +7,25 @@ const Footer: React.FC = () => {
           <a className="has-text-link-dark" href="https://nyc.ethglobal.co/">
             ETH NYC
           </a>{" "}
-          2022 by Val &amp; Hugo
+          2022 by{" "}
+          <a
+            className="has-text-link-dark"
+            target="_blank"
+            rel="noreferrer"
+            href="https://twitter.com/ValerieTetu"
+          >
+            @ValerieTetu
+          </a>{" "}
+          &amp;{" "}
+          <a
+            className="has-text-link-dark"
+            target="_blank"
+            rel="noreferrer"
+            href="https://twitter.com/HugoApps"
+          >
+            @HugoApps
+          </a>{" "}
+          👩‍💻👨‍💻
         </p>
         <p>
           GitHub:{" "}

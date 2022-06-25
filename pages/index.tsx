@@ -13,16 +13,17 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>ETH NYC Hack - L0YAL3</title>
+        <title>L0YAL3</title>
         <meta name="description" content="ETHNYC Hack Vivigo" />
       </Head>
-      <section className="section">
-        <h1 className="title is-1">ETH NYC Hack - L0YAL3</h1>
-
-        <div className="notification is-info is-light">
-          Explain what the project does here
+      <section className="hero" style={{ backgroundImage: "url(/bg.webp)" }}>
+        <div className="hero-body">
+          <p className="title">L0YALT3</p>
+          <p className="subtitle">Your Web3 loyalty portal</p>
         </div>
+      </section>
 
+      <section className="section">
         <SearchBar />
         <ConnectButton />
       </section>

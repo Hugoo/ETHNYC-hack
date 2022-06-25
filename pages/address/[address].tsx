@@ -42,18 +42,20 @@ const Address: NextPage = () => {
     <>
       <NavBar />
       <section className="section">
-        <h4 className="title is-4">{address}</h4>
+        <h4 className="title is-4">
+          {address}
 
-        <span className="tag is-primary is-large">
-          Tx count: {data.txCount}
-        </span>
-        <br />
-        <br />
-        <span className="tag is-primary is-large">
-          Balance: {data.balance} ETH
-        </span>
+          <span className="tag is-primary is-normal">
+            Tx count: {data.txCount}
+          </span>
+          <span className="tag is-primary is-normal">
+            Balance: {data.balance} ETH
+          </span>
+        </h4>
       </section>
       <section className="section">
+        <h4 className="title is-4">Communities</h4>
+
         <div className="container">
           <div className="columns is-multiline">
             {PROTOCOLS.map((protocol) => {
@@ -69,6 +71,13 @@ const Address: NextPage = () => {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <h4 className="title is-4">Recommendations</h4>
+        <div className="container">
+          <p>RED DAO, FlamingoDAO, Metacartel...</p>
         </div>
       </section>
       <Footer />

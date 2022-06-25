@@ -77,8 +77,15 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
               fontWeight: `${balance && "bold"}`,
             }}
           >
-            Balance: {balance} {protocol.token.symbol}
+            Balance: {balance} {protocol.token.symbol} <br />
           </span>
+          <span>
+            # Interactions: {/* https://stackoverflow.com/a/1527832/651299 */}
+            {isInvolved ? Math.floor(1 + Math.random() * (30 - 1 + 1)) : 0}{" "}
+            <br />
+          </span>
+
+          {isInvolved && <span>Active since: XXX</span>}
         </div>
       </div>
     </div>

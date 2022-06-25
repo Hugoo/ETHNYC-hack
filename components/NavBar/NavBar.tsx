@@ -6,15 +6,18 @@ import Link from "next/link";
 
 const NavBar: React.FC = () => {
   return (
-    <nav className="navbar is-light">
+    <nav
+      className="navbar is-light"
+      style={{ backgroundImage: "url(/bg.webp)" }}
+    >
       <div className="navbar-menu is-active">
         <div className="navbar-start">
           <Link href="/">
-            <a className="navbar-item">🗽 ETH NYC Hack</a>
+            <a className="navbar-item">L0YAL3</a>
           </Link>
         </div>
 
-        <div className="navbar-end">
+        {/* <div className="navbar-end">
           <div className="navbar-item">
             <div className="field is-grouped">
               <p className="control">
@@ -27,7 +30,7 @@ const NavBar: React.FC = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
