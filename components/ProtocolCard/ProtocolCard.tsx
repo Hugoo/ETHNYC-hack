@@ -7,6 +7,7 @@ import { useQuery, gql } from "@apollo/client";
 
 import { ProtocolData } from "../../services/protocols";
 import { getSnapshotVotes } from "../../services/snapshot";
+import { getBalanceOf } from "../../services/ethers";
 
 interface Props {
   protocol: ProtocolData;
@@ -15,6 +16,7 @@ interface Props {
 
 const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
   const [score, setScore] = useState("");
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     const fetchScores = async () => {
@@ -22,6 +24,13 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
         protocol.governance.id,
         address
       );
+
+      const balance = await getBalanceOf(
+        protocol.token.contractAddress,
+        address
+      );
+
+      setBalance(balance);
 
       setScore(votesNumber);
     };
@@ -44,7 +53,8 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
         </div>
 
         <div className="content">
-          Votes: {score} on {protocol.governance.platform}
+          Votes: {score} on {protocol.governance.platform} <br />
+          Balance: {balance} {protocol.token.symbol}
         </div>
       </div>
     </div>
