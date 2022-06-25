@@ -12,6 +12,7 @@ import { getAccountBalance, getTxNumberForAddress } from "../../services/tatum";
 import { isAddress } from "web3-utils";
 import NavBar from "../../components/NavBar";
 import ProtocolCard from "../../components/ProtocolCard";
+import { PROTOCOLS } from "../../services/protocols";
 
 const Address: NextPage = () => {
   const router = useRouter();
@@ -48,21 +49,16 @@ const Address: NextPage = () => {
 
         <div className="container">
           <div className="columns is-multiline">
-            <div className="column is-one-quarter">
-              <ProtocolCard />
-            </div>
-            <div className="column is-one-quarter">
-              <ProtocolCard />
-            </div>
-            <div className="column is-one-quarter">
-              <ProtocolCard />
-            </div>
-            <div className="column is-one-quarter">
-              <ProtocolCard />
-            </div>
-            <div className="column is-one-quarter">
-              <ProtocolCard />
-            </div>
+            {PROTOCOLS.map((protocol) => {
+              return (
+                <div key={protocol.name} className="column is-one-quarter">
+                  <ProtocolCard
+                    protocol={protocol}
+                    address={address as string}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

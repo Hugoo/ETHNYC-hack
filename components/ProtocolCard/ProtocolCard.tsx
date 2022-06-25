@@ -2,30 +2,47 @@
  * @author Hugo Masclet <git@hugom.xyz>
  */
 
-const ProtocolCard: React.FC = () => {
+import { useEffect, useState } from "react";
+
+import { ProtocolData } from "../../services/protocols";
+import { getSnapshotVotes } from "../../services/snapshot";
+
+interface Props {
+  protocol: ProtocolData;
+  address: string;
+}
+
+const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
+  const [score, setScore] = useState("");
+
+  useEffect(() => {
+    const fetchScores = async () => {
+      const votesNumber = await getSnapshotVotes(
+        protocol.governance.id,
+        address
+      );
+
+      setScore(votesNumber);
+    };
+
+    fetchScores();
+  }, []);
+
   return (
     <div className="card">
       <div className="card-content">
         <div className="media">
           <div className="media-left">
             <figure className="image is-48x48">
-              <img
-                src="https://bulma.io/images/placeholders/96x96.png"
-                alt="Placeholder image"
-              />
+              <img src={protocol.logoUrl} alt={protocol.name} />
             </figure>
           </div>
           <div className="media-content">
-            <p className="title is-4">John Smith</p>
-            <p className="subtitle is-6">@johnsmith</p>
+            <p className="title is-4">{protocol.name}</p>
           </div>
         </div>
 
-        <div className="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-          iaculis mauris. <a>@bulmaio</a>.<a href="#">#css</a>{" "}
-          <a href="#">#responsive</a>
-        </div>
+        <div className="content">Votes: {score}</div>
       </div>
     </div>
   );
