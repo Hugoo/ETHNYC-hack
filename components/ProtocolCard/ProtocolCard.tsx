@@ -17,6 +17,7 @@ interface Props {
 const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
   const [score, setScore] = useState("");
   const [balance, setBalance] = useState(0);
+  const [isInvolved, setIsInvolved] = useState(false);
 
   useEffect(() => {
     const fetchScores = async () => {
@@ -25,21 +26,32 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
         address
       );
 
-      const balance = await getBalanceOf(
+      const fetchedBalance = await getBalanceOf(
         protocol.token.contractAddress,
         address
       );
 
-      setBalance(balance);
-
+      setBalance(Math.round(fetchedBalance * 10000) / 10000);
       setScore(votesNumber);
+
+      if (fetchedBalance || votesNumber) {
+        setIsInvolved(true);
+      } else {
+        setIsInvolved(false);
+      }
     };
 
     fetchScores();
   }, []);
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      style={{
+        border: `${isInvolved ? "grey solid" : undefined}`,
+        opacity: `${isInvolved ? "1" : "0.6"}`,
+      }}
+    >
       <div className="card-content">
         <div className="media">
           <div className="media-left">
@@ -53,8 +65,20 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
         </div>
 
         <div className="content">
-          Votes: {score} on {protocol.governance.platform} <br />
-          Balance: {balance} {protocol.token.symbol}
+          <span
+            style={{
+              fontWeight: `${score && "bold"}`,
+            }}
+          >
+            Votes: {score} on {protocol.governance.platform} <br />
+          </span>
+          <span
+            style={{
+              fontWeight: `${balance && "bold"}`,
+            }}
+          >
+            Balance: {balance} {protocol.token.symbol}
+          </span>
         </div>
       </div>
     </div>

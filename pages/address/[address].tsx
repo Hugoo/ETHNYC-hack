@@ -12,6 +12,7 @@ import NavBar from "../../components/NavBar";
 import ProtocolCard from "../../components/ProtocolCard";
 import ClientOnly from "../../components/ClientOnly";
 import { PROTOCOLS } from "../../services/protocols";
+import { getAccountBalance, getTxNumberForAddress } from "../../services/tatum";
 
 const Address: NextPage = () => {
   const router = useRouter();
@@ -25,8 +26,8 @@ const Address: NextPage = () => {
     }
 
     const getData = async () => {
-      const txCount = 999; // await getTxNumberForAddress(address as string);
-      const balance = 2; // await getAccountBalance(address as string);
+      const txCount = await getTxNumberForAddress(address as string);
+      const balance = await getAccountBalance(address as string);
       setData({ txCount, balance });
     };
 
