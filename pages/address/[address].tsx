@@ -14,7 +14,7 @@ const Address: NextPage = () => {
   const [data, setData] = useState<any>({});
 
   useEffect(() => {
-    if (!address || !isAddress(address)) {
+    if (!address || !isAddress(address as string)) {
       return;
     }
 

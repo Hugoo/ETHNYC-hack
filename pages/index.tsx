@@ -19,6 +19,15 @@ const Home: NextPage = () => {
 
         <SearchBar />
       </section>
+      <section className="section">
+        <h3 className="title is-3">Protocols</h3>
+        <div>
+          <ul>
+            <li>LIDO</li>
+            <li>dYdX</li>
+          </ul>
+        </div>
+      </section>
       <Footer />
     </>
   );
