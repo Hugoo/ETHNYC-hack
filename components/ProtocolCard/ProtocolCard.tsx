@@ -3,6 +3,7 @@
  */
 
 import { useEffect, useState } from "react";
+import { useQuery, gql } from "@apollo/client";
 
 import { ProtocolData } from "../../services/protocols";
 import { getSnapshotVotes } from "../../services/snapshot";
@@ -42,7 +43,9 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
           </div>
         </div>
 
-        <div className="content">Votes: {score}</div>
+        <div className="content">
+          Votes: {score} on {protocol.governance.platform}
+        </div>
       </div>
     </div>
   );

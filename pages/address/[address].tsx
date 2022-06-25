@@ -3,15 +3,14 @@
  */
 
 import type { NextPage } from "next";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { isAddress } from "web3-utils";
 
 import Footer from "../../components/Footer";
-import { getAccountBalance, getTxNumberForAddress } from "../../services/tatum";
-import { isAddress } from "web3-utils";
 import NavBar from "../../components/NavBar";
 import ProtocolCard from "../../components/ProtocolCard";
+import ClientOnly from "../../components/ClientOnly";
 import { PROTOCOLS } from "../../services/protocols";
 
 const Address: NextPage = () => {
@@ -34,28 +33,37 @@ const Address: NextPage = () => {
     getData();
   }, [address]);
 
+  if (!address) {
+    return null;
+  }
+
   return (
     <>
       <NavBar />
       <section className="section">
         <h4 className="title is-4">{address}</h4>
 
-        <span className="tag is-info is-large">Tx count: {data.txCount}</span>
+        <span className="tag is-primary is-large">
+          Tx count: {data.txCount}
+        </span>
         <br />
         <br />
-        <span className="tag is-info is-large">
+        <span className="tag is-primary is-large">
           Balance: {data.balance} ETH
         </span>
-
+      </section>
+      <section className="section">
         <div className="container">
           <div className="columns is-multiline">
             {PROTOCOLS.map((protocol) => {
               return (
                 <div key={protocol.name} className="column is-one-quarter">
-                  <ProtocolCard
-                    protocol={protocol}
-                    address={address as string}
-                  />
+                  <ClientOnly>
+                    <ProtocolCard
+                      protocol={protocol}
+                      address={address as string}
+                    />
+                  </ClientOnly>
                 </div>
               );
             })}

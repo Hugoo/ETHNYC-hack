@@ -20,4 +20,12 @@ export const PROTOCOLS: ProtocolData[] = [
       id: "uniswap",
     },
   },
+  {
+    name: "ENS",
+    logoUrl: "https://cdn.stamp.fyi/space/ens.eth?s=160&cb=bc8a2856691e05ab",
+    governance: {
+      platform: GovernancePlatforms.SNAPSHOT,
+      id: "ens.eth",
+    },
+  },
 ];
