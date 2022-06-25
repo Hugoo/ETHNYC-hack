@@ -11,6 +11,7 @@ import Footer from "../../components/Footer";
 import { getAccountBalance, getTxNumberForAddress } from "../../services/tatum";
 import { isAddress } from "web3-utils";
 import NavBar from "../../components/NavBar";
+import ProtocolCard from "../../components/ProtocolCard";
 
 const Address: NextPage = () => {
   const router = useRouter();
@@ -24,8 +25,8 @@ const Address: NextPage = () => {
     }
 
     const getData = async () => {
-      const txCount = await getTxNumberForAddress(address as string);
-      const balance = await getAccountBalance(address as string);
+      const txCount = 999; // await getTxNumberForAddress(address as string);
+      const balance = 2; // await getAccountBalance(address as string);
       setData({ txCount, balance });
     };
 
@@ -44,6 +45,26 @@ const Address: NextPage = () => {
         <span className="tag is-info is-large">
           Balance: {data.balance} ETH
         </span>
+
+        <div className="container">
+          <div className="columns is-multiline">
+            <div className="column is-one-quarter">
+              <ProtocolCard />
+            </div>
+            <div className="column is-one-quarter">
+              <ProtocolCard />
+            </div>
+            <div className="column is-one-quarter">
+              <ProtocolCard />
+            </div>
+            <div className="column is-one-quarter">
+              <ProtocolCard />
+            </div>
+            <div className="column is-one-quarter">
+              <ProtocolCard />
+            </div>
+          </div>
+        </div>
       </section>
       <Footer />
     </>
