@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       </Head>
       <section className="hero" style={{ backgroundImage: "url(/bg.webp)" }}>
         <div className="hero-body">
-          <p className="title">L0YALT3</p>
+          <p className="title">L0YAL3</p>
           <p className="subtitle">Your Web3 loyalty portal</p>
         </div>
       </section>
