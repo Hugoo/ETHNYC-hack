@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
 
 const Home: NextPage = () => {
@@ -18,17 +19,7 @@ const Home: NextPage = () => {
 
         <SearchBar />
       </section>
-      <footer className="footer">
-        <div className="content has-text-centered">
-          <p>
-            Made with ❤️ in NY during{" "}
-            <a className="has-text-link-dark" href="https://nyc.ethglobal.co/">
-              ETH NYC
-            </a>{" "}
-            2022 by Val &amp; Hugo
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 };
