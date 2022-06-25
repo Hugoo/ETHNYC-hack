@@ -1,3 +1,7 @@
+/**
+ * @author Hugo Masclet <git@hugom.xyz>
+ */
+
 import type { NextPage } from "next";
 
 import { useEffect, useState } from "react";
@@ -6,6 +10,7 @@ import { useRouter } from "next/router";
 import Footer from "../../components/Footer";
 import { getAccountBalance, getTxNumberForAddress } from "../../services/tatum";
 import { isAddress } from "web3-utils";
+import NavBar from "../../components/NavBar";
 
 const Address: NextPage = () => {
   const router = useRouter();
@@ -29,6 +34,7 @@ const Address: NextPage = () => {
 
   return (
     <>
+      <NavBar />
       <section className="section">
         <h4 className="title is-4">{address}</h4>
 

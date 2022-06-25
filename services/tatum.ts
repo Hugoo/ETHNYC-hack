@@ -1,3 +1,7 @@
+/**
+ * @author Hugo Masclet <git@hugom.xyz>
+ */
+
 // es6
 // import blockchain subpackage or full sdk package
 // import { TatumEthSDK } from "@tatumio/eth";

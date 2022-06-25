@@ -1,3 +1,7 @@
+/**
+ * @author Hugo Masclet <git@hugom.xyz>
+ */
+
 import type { NextPage } from "next";
 import Head from "next/head";
 import ConnectButton from "../components/ConnectButton";
