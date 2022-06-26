@@ -1,0 +1,18 @@
+name: Valist Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: valist-io/valist-github-action@v2.2.0
+        with:
+          private-key: ${{ secrets.VALIST_PRIVATE_KEY }}
+          account: acme-co
+          project: example
+          release: 0.0.1
+          files: "**"
