@@ -12,7 +12,7 @@ jobs:
       - uses: valist-io/valist-github-action@v2.2.0
         with:
           private-key: ${{ secrets.VALIST_PRIVATE_KEY }}
-          account: acme-co
-          project: example
-          release: 0.0.1
+          account: hugoo
+          project: l0yalt3
+          release: ${{ env.TIMESTAMP }}
           files: "**"
