@@ -37,6 +37,6 @@ export const getSnapshotVotes = async (spaceId: string, address: string) => {
     `,
   });
 
-  const numberOfVotes = response.data.votes.length;
+  const numberOfVotes: number = response.data.votes.length;
   return numberOfVotes;
 };

@@ -8,6 +8,7 @@ import { useQuery, gql } from "@apollo/client";
 import { ProtocolData } from "../../services/protocols";
 import { getSnapshotVotes } from "../../services/snapshot";
 import { getBalanceOf } from "../../services/ethers";
+import { computeCommunityScore, randomDate } from "../../services/score";
 
 interface Props {
   protocol: ProtocolData;
@@ -15,8 +16,11 @@ interface Props {
 }
 
 const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
-  const [score, setScore] = useState("");
+  const [numberOfVotes, setNumberOfVotes] = useState(0);
   const [balance, setBalance] = useState(0);
+  const [numberOfInteractions, setNumberOfInteractions] = useState(0);
+  const [score, setScore] = useState(0);
+  const [activeSince, setActiveSince] = useState("");
   const [isInvolved, setIsInvolved] = useState(false);
 
   useEffect(() => {
@@ -32,7 +36,13 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
       );
 
       setBalance(Math.round(fetchedBalance * 10000) / 10000);
-      setScore(votesNumber);
+      setNumberOfVotes(votesNumber);
+      setActiveSince(randomDate(new Date(2018, 0, 1), new Date()));
+
+      setNumberOfInteractions(Math.floor(1 + Math.random() * (30 - 1 + 1)));
+      setScore(
+        computeCommunityScore(fetchedBalance, votesNumber, numberOfInteractions)
+      );
 
       if (fetchedBalance || votesNumber) {
         setIsInvolved(true);
@@ -67,10 +77,10 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
         <div className="content">
           <span
             style={{
-              fontWeight: `${score && "bold"}`,
+              fontWeight: `${numberOfVotes && "bold"}`,
             }}
           >
-            Votes: {score} on {protocol.governance.platform} <br />
+            Votes: {numberOfVotes} on {protocol.governance.platform} <br />
           </span>
           <span
             style={{
@@ -81,13 +91,19 @@ const ProtocolCard: React.FC<Props> = ({ protocol, address }) => {
           </span>
           <span>
             # Interactions: {/* https://stackoverflow.com/a/1527832/651299 */}
-            {isInvolved ? Math.floor(1 + Math.random() * (30 - 1 + 1)) : 0}{" "}
-            <br />
+            {isInvolved && numberOfInteractions} <br />
           </span>
 
-          {isInvolved && <span>Active since: XXX</span>}
+          {isInvolved && <span>Active since: {activeSince}</span>}
         </div>
       </div>
+      {isInvolved && (
+        <footer className="card-footer">
+          <a href="#" className="card-footer-item">
+            Score: {score}
+          </a>
+        </footer>
+      )}
     </div>
   );
 };
