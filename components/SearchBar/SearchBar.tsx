@@ -14,7 +14,7 @@ const SearchBar: React.FC = () => {
 
     if (newAddress !== "" && !isAddress(newAddress)) {
       setError("Not a valid address");
-    } else {
+    } else if (newAddress !== "") {
       setError("");
       // TODO: here check if address is EOA or contract
       router.push(`/address/${newAddress}`);
